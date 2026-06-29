@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CYBER HUD</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, sans-serif;
+}
+
+body{
+    background:radial-gradient(circle,#0d1117,#000);
+    overflow:hidden;
+    color:#00ffe5;
+}
+
+.grid{
+    position:fixed;
+    width:100%;
+    height:100%;
+    background:
+    linear-gradient(rgba(0,255,255,.08) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(0,255,255,.08) 1px,transparent 1px);
+    background-size:40px 40px;
+}
+
+.panel{
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    width:700px;
+    max-width:90%;
+    border:2px solid #00ffe5;
+    border-radius:15px;
+    padding:30px;
+    box-shadow:0 0 30px #00ffe5;
+    background:rgba(0,0,0,.35);
+}
+
+h1{
+    text-align:center;
+    letter-spacing:5px;
+    margin-bottom:25px;
+}
+
+.bar{
+    width:100%;
+    height:18px;
+    border:1px solid #00ffe5;
+    margin:18px 0;
+}
+
+.fill{
+    height:100%;
+    width:0%;
+    background:#00ffe5;
+    animation:load 5s linear infinite;
+}
+
+@keyframes load{
+0%{width:0;}
+50%{width:100%;}
+100%{width:0;}
+}
+
+.status{
+    display:flex;
+    justify-content:space-between;
+    margin-top:25px;
+    font-size:18px;
+}
+
+.clock{
+    text-align:center;
+    font-size:40px;
+    margin-top:20px;
+    letter-spacing:3px;
+}
+
+.circle{
+    position:absolute;
+    width:320px;
+    height:320px;
+    border:2px solid #00ffe5;
+    border-radius:50%;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    animation:spin 10s linear infinite;
+    opacity:.25;
+}
+
+@keyframes spin{
+from{transform:translate(-50%,-50%) rotate(0deg);}
+to{transform:translate(-50%,-50%) rotate(360deg);}
+}
+</style>
+</head>
+
+<body>
+
+<div class="grid"></div>
+<div class="circle"></div>
+
+<div class="panel">
+
+<h1>CYBER CONTROL</h1>
+
+CPU
+<div class="bar"><div class="fill"></div></div>
+
+MEMORY
+<div class="bar"><div class="fill"></div></div>
+
+NETWORK
+<div class="bar"><div class="fill"></div></div>
+
+<div class="status">
+<div>Status : ONLINE</div>
+<div>Mode : CYBER</div>
+</div>
+
+<div class="clock" id="clock"></div>
+
+</div>
+
+<script>
+function jam(){
+let d=new Date();
+let h=String(d.getHours()).padStart(2,"0");
+let m=String(d.getMinutes()).padStart(2,"0");
+let s=String(d.getSeconds()).padStart(2,"0");
+document.getElementById("clock").innerHTML=h+":"+m+":"+s;
+}
+setInterval(jam,1000);
+jam();
+</script>
+
+</body>
+</html>
